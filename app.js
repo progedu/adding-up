@@ -37,7 +37,7 @@ rl.on('close', () => {
         return p1[1].change - p2[1].change;
     });
     const rankingStrings = rankingArray.map((p, i) => {
-        return 'rank' + i + ' ' + p[0] + ': ' + p[1].p10 + '=>' + p[1].p15 + ' 変化率:' + p[1].change;
+        return 'rank' + (i + 1)  + ' ' + p[0] + ': ' + p[1].p10 + '=>' + p[1].p15 + ' 変化率:' + p[1].change;
     });
     console.log(rankingStrings);
 });
