@@ -2,7 +2,7 @@
 const fs = require('fs');
 const readline = require('readline');
 const rs = fs.ReadStream('./popu-pref.csv');
-const rl = readline.createInterface({ 'input': rs, 'output': {} });
+const rl = readline.createInterface({ input: rs, output: {} });
 const map = new Map(); // key: 都道府県 value: 集計データのオブジェクト
 rl.on('line', (lineString) => {
     const columns = lineString.split(',');
