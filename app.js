@@ -10,7 +10,7 @@ rl.on('line',(lineString) => {
     const prefecture = columns[2];
     const popu = parseInt(columns[7]);
     if(year === 2010 || year === 2015){
-        let value = map.get('prefecture');
+        let value = map.get(prefecture);
         console.log("value:" + value);
         if(!value){
             value = {
@@ -31,7 +31,7 @@ rl.on('line',(lineString) => {
 rl.resume();
 rl.on('close', () => {
     //console.log(map);
-    
+
     for(let pair of map){
         const value = pair[1];
         value.change = value.popu15 / value.popu10;
