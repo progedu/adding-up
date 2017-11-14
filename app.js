@@ -15,7 +15,7 @@ rl.on('line', (lineString) => {
             value = {
                 p10 : 0,
                 p15 : 0,
-                change: null
+                change : null
             };
         }
         if (year === 2010) {
@@ -33,11 +33,11 @@ rl.on('close', () => {
         const value = pair[1];
         value.change = value.p15 / value.p10;
     }
-    const rankingArray = Array.from(map).sort((pair1, pair2) => {
-        return pair2[1].change - pair1[1].change;
+    const rankingArray = Array.from(map).sort((p1, p2) => {
+        return p1[1].change - p2[1].change;
     });
-    const rankingStrings = rankingArray.map((pair) => {
-        return pair[0] + ': ' + pair[1].p10 + '=>' + pair[1].p15 + ' 変化率:' + pair[1].change;
+    const rankingStrings = rankingArray.map((pair, i) => {
+        return ( i + 1 ) + '位 ' + pair[0] + ': ' + pair[1].p10 + '=>' + pair[1].p15 + ' 変化率:' + pair[1].change;
     });
     console.log(rankingStrings);
 });
