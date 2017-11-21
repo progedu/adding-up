@@ -38,7 +38,7 @@ rl.on('close', () => {
         return pair1[1].change - pair2[1].change;
     });
     const rankingStrings = rankingArray.map((pair, rank) => {
-        return '第'+ rank + '位 ' + pair[0] + ': ' + pair[1].popu10 + '=>' + pair[1].popu15 + ' 変化率:' + pair[1].change; 
+        return '第'+ (rank + 1) + '位 ' + pair[0] + ': ' + pair[1].popu10 + '=>' + pair[1].popu15 + ' 変化率:' + pair[1].change; 
     });
     console.log(rankingStrings);
 });
