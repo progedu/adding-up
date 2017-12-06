@@ -37,10 +37,10 @@ rl.on("close", () => {
         value.change = value.popu15 / value.popu10;
     }
     const rankingArray = Array.from(map).sort((pair1, pair2) => {
-        return pair2[1].change - pair1[1].change;
+        return pair1[1].change - pair2[1].change;
     });
-    const rankingString = rankingArray.map((p) => {
-        return p[0] + ': ' + p[1].popu10 + '=>' + p[1].popu15 + ' 変化率:' + p[1].change;
+    const rankingString = rankingArray.map((p, i) => {
+        return (i+1) + "位 " + p[0] + ': ' + p[1].popu10 + '=>' + p[1].popu15 + ' 変化率:' + p[1].change;
     })
     console.log(rankingString);
 });
