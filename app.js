@@ -43,14 +43,14 @@ rl.on('close', () => {
 
     // 変化率の順に並び変え
     const rankingArray = Array.from(map).sort((pair1, pair2) => {        
-//        return pair1[1].change - pair2[1].change; // 昇順
-        return pair2[1].change - pair1[1].change; // 降順
+        return pair1[1].change - pair2[1].change; // 昇順
+//        return pair2[1].change - pair1[1].change; // 降順
     });
 //    console.log(rankingArray);
     
     // 整形して表示
-    const rankingStrings = rankingArray.map((pair) => {
-        return pair[0] + ': ' + pair[1].popu10 + ' => ' + pair[1].popu15 + ' 変化率: ' + pair[1].change;
+    const rankingStrings = rankingArray.map((pair, i) => {        
+        return i+1 + '位 ' + pair[0] + ': ' + pair[1].popu10 + ' => ' + pair[1].popu15 + ' 変化率: ' + pair[1].change;
     });
     console.log(rankingStrings);    
 });
