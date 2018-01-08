@@ -31,5 +31,9 @@ rl.on('line', (lineString) => {
 });
 rl.resume();
 rl.on('close', () => {
+    for(let pair of map){
+        const value = pair[1];
+        value.change = value.popu15/value.popu10;
+    }
     console.log(map);
 })
