@@ -35,5 +35,8 @@ rl.on('close', () => {
         const value = pair[1];
         value.change = value.popu15/value.popu10;
     }
-    console.log(map);
+    const rankingArray = Array.from(map).sort((pair1, pair2) => {
+        return pair2[1].change - pair1[1].change;
+    })
+    console.log(rankingArray);
 })
