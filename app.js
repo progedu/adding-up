@@ -49,12 +49,22 @@ rl.on('close', () => {
         //return で正の数を返すことで、pair2をpair1の前の順番に入れ替えなおす。
         //pair1の方が大きい場合は、pair1の方が前の順番にならなければならないので、
         //return で負の数を返すことで、pair1とpair2の順番をそのままにする。
-        return pair2[1].change - pair1[1].change;
+        //return pair2[1].change - pair1[1].change;
+
+        //逆順にする場合は、
+        return pair1[1].change - pair2[1].change;
+        //Pair1の方が大きいときは、pair2の方が前の順番になるため
+        //正の数を返す（pair2をpair1の前の順番に入れ替えなおす）。
+        //pair2の方が大きいときは、pair1の方が前の順番になるため
+        //負の数を返す（pair1とpair2の順番をそのままにする）。）
     });
     const rankingStrings = rankingArray.map((pair, i)=>{
         //rannkingArrayの1つ1つの要素を、下記のフォーマットにした配列を返す。
-　          //「$"都道府県名"：$"「2010年の15歳から19歳の人口」の集計した値"=>$"「2015年の15歳から19歳の人口」の集計した値"変化率:$"変化率"」
-        return pair[0] + ': ' + pair[1].popu10 + '=>' + pair[1].popu15 + ' 変化率:' + pair[1].change;
+        //「$"都道府県名"：$"「2010年の15歳から19歳の人口」の集計した値"=>$"「2015年の15歳から19歳の人口」の集計した値"変化率:$"変化率"」
+        //return pair[0] + ': ' + pair[1].popu10 + '=>' + pair[1].popu15 + ' 変化率:' + pair[1].change;
+        //「$'i'位　$"都道府県名"：$"「2010年の15歳から19歳の人口」の集計した値"=>$"「2015年の15歳から19歳の人口」の集計した値"変化率:$"変化率"」
+        const rank = i + 1;
+        return rank + '位　' + pair[0] + ': ' + pair[1].popu10 + '=>' + pair[1].popu15 + ' 変化率:' + pair[1].change;
     });
     console.log(rankingStrings);
 });
