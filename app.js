@@ -35,10 +35,10 @@ rl.on('close', () => {
         value.change = value.popu15 / value.popu10;
     }
     const rankingArray = Array.from(map).sort((p1,p2) => {
-        return p2[1].change - p1[1].change;
+        return p1[1].change - p2[1].change;
     });
-    const rankingStrings = rankingArray.map((pair) => {
-        return pair[0] + ': ' + pair[1].popu10 + '=>' + pair[1].popu15 + ' 変化率:' + pair[1].change;
+    const rankingStrings = rankingArray.map((pair , i) => {
+        return (i + 1) + '位 ' + pair[0] + ': ' + pair[1].popu10 + '=>' + pair[1].popu15 + ' 変化率:' + pair[1].change;
 });
 console.log(rankingStrings);
 });
