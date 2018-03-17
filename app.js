@@ -27,6 +27,7 @@ rl.on('line', (lineString) => {
         map.set(prefecture, value);
     }
 });
+rl.resume();
 rl.on('close', () => {
     for (let pair of map) {
         const value = pair[1];
