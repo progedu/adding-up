@@ -36,10 +36,10 @@ rl.on('close', () => {
         value.change = value.popu15 / value.popu10;
     }
     const rankingArray = Array.from(map).sort((pair1, pair2) => {       //Array.from(map):連想配列を普通の配列へ
-        return pair2[1].change - pair1[1].change;
+        return pair1[1].change - pair2[1].change;
     });
-    const rankingStrings = rankingArray.map((pair) => {                 //Map の キーと値が要素になった配列を要素 pair として受け取り、それを文字列に変換する
-        return pair[0] + ': ' + pair[1].popu10 + '=>' + pair[1].popu15 + ' 変化率:' + pair[1].change;
+    const rankingStrings = rankingArray.map((pair, i) => {                 //Map の キーと値が要素になった配列を要素 pair として受け取り、それを文字列に変換する
+        return (i + 1) + '位' + pair[0] + ': ' + pair[1].popu10 + '=>' + pair[1].popu15 + ' 変化率:' + pair[1].change;
     });
     console.log(rankingStrings);
 });
