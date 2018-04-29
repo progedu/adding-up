@@ -34,9 +34,9 @@ rl.on('close', () => {
         value.change = value.popu15 / value.popu10;
     }
     const rankingArray = Array.from(map).sort((pair1, pair2) => {
-        return pair2[1].change - pair1[1].change;
+        return pair1[1].change - pair2[1].change;
     });
-    const rankingStrings = rankingArray.map((pair) => {
+    const rankingStrings = rankingArray.map((pair, i) => {
 
         const maxCityNameLen = 4;
         const maxPopuLen     = 7;
@@ -45,25 +45,31 @@ rl.on('close', () => {
         let strPopu10 = String(pair[1].popu10);
         let strPopu15 = String(pair[1].popu15);
 
+        // 長さを調整して整形（順位）
+        let order = i + 1;
+        if (order < 10){
+            order = order + ' ';
+        }
+
         // 長さを調整して整形（県名）
         let shortLen = maxCityNameLen - cityName.length;
         for (let i = 0; i < shortLen; i++) {
-            cityName = cityName + '　';
+            cityName = cityName + '　'; //ここだけ全角空欄を入れる
         }
 
         // 長さを調整して整形（2010年人口）
         shortLen = maxPopuLen - strPopu10.length;
         for (let i = 0; i < shortLen; i++) {
-            strPopu10 = ' ' + strPopu10;
+            strPopu10 = strPopu10 + ' ';
         }
 
         // 長さを調整して整形（2015年人口）
         shortLen = maxPopuLen - strPopu15.length;
         for (let i = 0; i < shortLen; i++) {
-            strPopu15 = ' ' + strPopu15;
+            strPopu15 = strPopu15 + ' ';
         }
 
-        return cityName + ': ' + strPopu10 + '=>' + strPopu15 + '  変化率:' + pair[1].change;
+        return '【' + order + '位】' + cityName + ': ' + strPopu10 + '=> ' + strPopu15 + ' 変化率: ' + pair[1].change;
     });
     console.log(rankingStrings);
 });
