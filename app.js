@@ -30,18 +30,18 @@ rl.on('line', (lineString) => {
 });
 rl.resume();
 rl.on('close', () => {
-    for(let pair of map){
+    for (let pair of map) {
         const value = pair[1];
         value.change = value.popu15 / value.popu10;     //オブジェクトの要素に対しては変更を入れることが可能
     }
     //変化率の降順
     //pairx[0]がkey, pairx[1]がvalue
     //pair1, pair2は特に意味はなく、どのように並び替えるかを指定するため
-    const rankingArray = Array.from(map).sort((pair1, pair2) =>{
-        return pair2[1].change - pair1[1].change;
+    const rankingArray = Array.from(map).sort((pair1, pair2) => {
+        return pair1[1].change - pair2[1].change;
     });
-    const rankingStrings = rankingArray.map((pair) =>{
-        return pair[0] + ': ' + pair[1].popu10 + '=>' + pair[1].popu15 + ' 変化率:' + pair[1].change;
+    const rankingStrings = rankingArray.map((pair, i) => {
+        return '順位:' + (i + 1) + ' ' + pair[0] + ': ' + pair[1].popu10 + '=>' + pair[1].popu15 + ' 変化率:' + pair[1].change;
     });
     console.log(rankingStrings);
 });
