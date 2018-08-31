@@ -40,5 +40,11 @@ rl.on('close', ()=>{
         const value = par[1];
        value.change = value.popu15 / value.popu10;
     }
-   console.log(map);
+    const rankingArray = Array.from(map).sort((par1,par2)=>{
+        return par2[1].change - par1[1].change;
+    });
+    const rankingString = rankingArray.map((pair)=>{
+        return pair[0]+":"+pair[1].popu10+'=>'+pair[1].popu15+"変化率："+pair[1].change;
+    });
+   console.log(rankingString);
 });
