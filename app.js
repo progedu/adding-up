@@ -1,4 +1,6 @@
 'use strict';
+//コマンドライン引数の数値で人口が増えた割合順か減った割合順にするかを決める
+const sort = process.argv[2] || 0;
 //Node.jsに用意されたモジュール呼び出し
 const fs = require('fs');   //ファイルを扱うモジュール
 const readline = require('readline');   //ファイルを一行ずつ読むモジュール
@@ -35,10 +37,14 @@ rl.on('close', () => {
         value.change = value.popu15 / value.popu10;
     }
     const rankingArray = Array.from(prefectureDataMap).sort((pair1,pair2) => {
-        return pair2[1].change - pair1[1].change;
+        if(parseInt(sort) === 1){   //コマンドライン引数に「1」が入力されたら人が増えた割合順
+            return pair2[1].change - pair1[1].change;
+        }else{  //それ以外は人が減った割合順
+            return pair1[1].change - pair2[1].change;
+        }
     });
-    const rankingString = rankingArray.map(([key, value]) => {
-        return key + ': ' + value.popu10 + '=>' + value. popu15 + ' 変化率:' + value.change;
+    const rankingString = rankingArray.map(([key, value],i) => {
+        return i+1 + '位: ' + key + ': ' + value.popu10 + '=>' + value. popu15 + ' 変化率:' + value.change;
     });
     console.log(rankingString);
 });
