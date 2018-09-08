@@ -11,6 +11,7 @@ rl.on('line', (lineString) => {
   const popu = parseInt(columns[7]);
   if (year === 2010 || year === 2015) {
     let value = prefectureDataMap.get(prefecture);
+    console.log(prefectureDataMap);
     if (!value) {
       value = {
         popu10: 0,
