@@ -34,10 +34,10 @@ rl.on('close', () => {
         value.change = value.popu2015 / value.popu2010;
     }
     const rankingArray = Array.from(map).sort((pair1, pair2) => {
-        return pair2[1].change - pair1[1].change;
+        return pair1[1].change - pair2[1].change;
     });
-    const rankingStrings= rankingArray.map((pair) => {
-        return pair[0] + ': ' + pair[1].popu2010 + '=>' + pair[1].popu2015 + ' 変化率:' + pair[1].change;
+    const rankingStrings= rankingArray.map((pair, i) => {
+        return (i+1) + '番人口が減ったのは、' + pair[0] + ': ' + pair[1].popu2010 + '=>' + pair[1].popu2015 + ' 変化率:' + pair[1].change;
     });
     console.log(rankingStrings);
 });
