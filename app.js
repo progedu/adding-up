@@ -44,8 +44,8 @@ rl.on('close', () => {
     const ranking = Array.from(prefectureDataMap).sort((p1, p2) => {
         return p1[1].change - p2[1].change
     });
-    const results = ranking.map(([key, value]) => {
-        return key + ': ' + value.change;
+    const results = ranking.map(([key, value], i) => {
+        return i +  ': ' + key + ': ' + value.change;
     });
     console.log(results);
 });
