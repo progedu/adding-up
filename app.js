@@ -35,11 +35,11 @@ rl.on('close', function(){
     }
     let _arry = Array.from(prefectureDataMap);
     _arry = _arry.sort(function(a,b){
-        return b[1].change - a[1].change;
+        return a[1].change - b[1].change;
     });
 
-    let _ranking = _arry.map(function([key, value]){
-        return key + ': ' + value.popu2010 + '=>' + value.popu2015 + ' 変化率:' + value.change;
+    let _ranking = _arry.map(function([key, value], i){
+        return '第' + (i+1) + '位  ' +key + ': ' + value.popu2010 + '=>' + value.popu2015 + ' 変化率:' + value.change;
     });
     console.log(_ranking)
 })
