@@ -32,10 +32,10 @@ rl.on('close', () => {  // 全行読み終わったときに
         value.change = value.popu15 / value.popu10;  // change を popu15 / popu10 に変更する
     }
     const rankingArray = Array.from(prefectureDataMap).sort((pair1, pair2) => {  // Map から二次元配列を生成、並び替え
-        return pair2[1].change - pair1[1].change;  // 大きい順にするので、右が大きい時に正になる比較関数
+        return pair1[1].change - pair2[1].change;  // 大きい順にするので、右が大きい時に正になる比較関数
     });
-    const rankingStrings = rankingArray.map(([key, value]) => {  // 二次元配列を文字列配列に変換
-        return key + ': ' + value.popu10 + '=>' + value.popu15 + ' 変化率:' + value.change;
+    const rankingStrings = rankingArray.map(([key, value], i) => {  // 二次元配列を文字列配列に変換
+        return (i + 1) + '位  ' + key + ': ' + value.popu10 + '=>' + value.popu15 + ' 変化率:' + value.change;
     });
     console.log(rankingStrings);  // 文字列配列を出力
 });
