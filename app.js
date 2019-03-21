@@ -44,7 +44,7 @@ rl.on('close', () => {
     return  pair1[1].change - pair2[1].change;
   });
   const rankingStrings = rankingArray.map(([key, value], i) => {
-    return (i +1) + '位:' + key + ': ' + value.popu10 + '人 =>' + value.popu15 + '人' + ' 変化率:' + value.change;
+    return (i + 1) + '位:' + key + ': ' + value.popu10 + '人 =>' + value.popu15 + '人' + ' 変化率:' + value.change;
   });
   console.log(rankingStrings);
 });
