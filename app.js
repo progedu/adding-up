@@ -53,11 +53,12 @@ rl.on('line', (lineString) => {
 
     //連想配列を配列に変換後、変化率の数値順で並び替え
     const rankingArray = Array.from(prefectureDataMap).sort((pair1, pair2) => {
-        return pair2[1].change - pair1[1].change;
+        return pair1[1].change - pair2[1].change;
     });
 
-    const rankingStrings = rankingArray.map(([key, value]) => {
-        return key + ': ' + value.popu10 + '=>' + value.popu15 + ' 変化率:' + value.change;
+    //配列を整形
+    const rankingStrings = rankingArray.map(([key, value],i) => {
+        return (i+1) + '位 ' + key + ': ' + value.popu10 + '=>' + value.popu15 + ' 変化率:' + value.change;
     });
       
     console.log(rankingStrings);
