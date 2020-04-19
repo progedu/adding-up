@@ -42,7 +42,8 @@ rl.on('close', () => {
 
     const rankingArray = Array.from(prefectureDataMap).sort((pair1, pair2) => {
         //console.log("pair1[0]:" + pair1[0] + ",pair1[1].change:" +pair1[1].change*100 + " / pair2[0]:" + pair2[0] + ",pair2[1].change:" +pair2[1].change*100);
-        return pair2[1].change - pair1[1].change;
+        //昇順の書き方。第1引数の方が大きいと正の値を返し、第1→第2を第2→第1の順にひっくり返す。
+        return pair1[1].change - pair2[1].change;
     });
 
 /*
@@ -50,8 +51,8 @@ rl.on('close', () => {
         return key;
     });
 */
-    const rankingString = rankingArray.map(([key, value]) => {
-        return key + ': ' + value.popu10 + '=>' + value.popu15 + ' 変化率:' + value.change;
+    const rankingString = rankingArray.map(([key, value], i) => {
+        return '減少率第' + ++i + '位・・・' + key + ': ' + value.popu10 + '=>' + value.popu15 + ' 変化率:' + value.change;
     });
     
     console.log(rankingString);
