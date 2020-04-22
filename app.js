@@ -46,11 +46,11 @@ rl.on('close', () => {
   const rankingArray = Array.from(prefectureDataMap).sort((pair1, pair2) => {
     //Array.from(prefectureDataMap)で連想配列を普通の配列に変換、sort関数を呼んで無名関数を渡す。sortに対して渡す関数は比較関数といい、これにより、並び替えをするルールを決められる。比較関数は2つの引数をとって、前者の引数1を後者の引数2より前にしたいときは、負の整数、2を1より前にしたいときは正の整数。並びをそのままにしたいときは0を返す。
     //変化率の降順に並び替えをしたいので、2が1より大きかった場合、2を1より前にする必要がある。2が1より大きいときに正の整数を返す処理を書けば良いので。2の変化率のプロパティから1の変化率のプロパティを引き算した値を返す。これにより、変化率の降順に並び替えられる。
-    return pair2[1].change - pair1[1].change;
+    return pair1[1].change - pair2[1].change;
   });
-  const rankingStrings = rankingArray.map(([key, value]) => {
+  const rankingStrings = rankingArray.map(([key, value], i) => {
     //連想配列のMapとは別のmap関数。
-    return key + ': ' + value.popu10 + '=>' + value.popu15 + ' 変化率:' + value.change;
+    return (i + 1) + '位 ' + key + ': ' + value.popu10 + '=>' + value.popu15 + ' 変化率:' + value.change;
     //Mapのキーと値が要素になった配列を要素[key, value]として受け取り、それを文字列に変換する。
   });
   console.log(rankingStrings);
