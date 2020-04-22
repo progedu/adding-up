@@ -46,5 +46,5 @@ rl.on('close', () => {
             value.change
         );
     });
-    console.log(rankingStrings);
+    console.log(rankingStrings.join("\n"));
 });
