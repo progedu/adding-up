@@ -31,10 +31,10 @@ rl.on("close", () => {
         value.change = value.population2015 / value.population2010;
     }
     const rankingArray = Array.from(prefectureDataMap).sort((pair1,pair2) => {
-        return pair2[1].change - pair1[1].change;
+        return pair1[1].change - pair2[1].change;
     });
-    const rankingStrings = rankingArray.map( ([key,value]) => {
-        return ( key + ": " + value.population2010 + "=>" + value.population2015 + " 変化率:" + value.change);
+    const rankingStrings = rankingArray.map( ([key,value],index) => {
+        return ( index + 1 + "位: " + key + ": " + value.population2010 + "=>" + value.population2015 + " 変化率:" + value.change);
     } );
     console.log(rankingStrings);
 });
