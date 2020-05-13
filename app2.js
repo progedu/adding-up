@@ -42,14 +42,14 @@ rl.on('close', () => {
     const rankingArray = Array.from(prefectureDataMap).sort((pair1, pair2) => {
         // Array.fromで連想配列のMapを通常の配列に変換。
         // sortは2つの引数を受け取って並び替えする関数。
-        return pair2[1].change - pair1[1].change;
+        return pair1[1].change - pair2[1].change;
     });
 
     //// 文字列を綺麗にする ////
-    const rankingStrings = rankingArray.map(([key,value]) => {
+    const rankingStrings = rankingArray.map(([key,value], i ) => {
         // .mapはmap関数(連想配列ではない）。
         // Array の要素それぞれを、与えられた関数を適用した内容に変換する関数
-        return key + ':' + value.popu10 + '=>' + value.popu15 + ' 変化率:' + value.change;
+        return (i +1) + '位 ' + key + ':' + value.popu10 + '=>' + value.popu15 + ' 変化率:' + value.change;
         });
     console.log(rankingStrings)
 });
