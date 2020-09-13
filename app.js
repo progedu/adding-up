@@ -44,9 +44,17 @@ rl.on('close', () => {
     for (let [key, data] of prefectureDataMap) {
         data.change = (data.popu15 / data.popu10);
     }
-    const rankingArray = Array.from(prefectureDataMap).sort((pair1, pair2) => {
-        return (pair2[1].change - pair1[1].change);
-    });
+    const rankingArray = Array.from(prefectureDataMap);
+    const length = rankingArray.length;
+    for (let i = 0; i < length - 1; i++) {
+        for (let j = i + 1; j < length; j++) {
+            if (rankingArray[i][1].change - rankingArray[j][1].change < 0) {
+                let tmp = rankingArray[i];
+                rankingArray[i] = rankingArray[j];
+                rankingArray[j] = tmp;
+            }
+        }
+    }
     // データを整形
     const rankingsStrings = rankingArray.map(([key, value],i) => {
         return (`第${i+1}位 ${key} (人口推移: ${value.popu10}人 => ${value.popu15}人 変化率: ${value.change})`);
