@@ -34,10 +34,10 @@ rl.on('close', ()=>{
     val.change = val.pop15 / val.pop10;
   }
   const r = Array.from(preDataMap).sort((pair1, pair2)=>{
-    return pair2[1].change - pair1[1].change;
+    return pair1[1].change - pair2[1].change;
   });
-  const rStr = r.map(([key, val]) => {
-    return (key + ': ' + val.pop10 + '=>' + val.pop15 + ' 変化率:' + val.change);
+  const rStr = r.map(([key, val], i) => {
+    return ((i + 1) + '位' + key + ': ' + val.pop10 + '=>' + val.pop15 + ' 変化率:' + val.change);
   });
   console.log(rStr);
 });
