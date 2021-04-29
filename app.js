@@ -30,14 +30,15 @@ rl.on('line',lineString => {
 });
 rl.on('close', () => {  
     for (let [key, value] of prefectureDataMap) {
+        value.change = value.popu15 / value.popu10;
     }
     const rankingArray = Array.from(prefectureDataMap).sort((pair1,pair2) => {
-        return pair2[1].change - pair1[1].change;
+        return pair1[1].change - pair2[1].change;
     });
     // map関数を用いて、Mapの配列を要素[key, value]として受け取り、文字列に変換する処理
-    const rankingStrings = rankingArray.map(([key, value]) => {
+    const rankingStrings = rankingArray.map(([key, value], i) => {
         return (
-            key + ': ' + value.popu10 + '=>' + value.popu15 + ' 変化率:' + value.change
+            i + 1 + '位 ' + key + ': ' + value.popu10 + '=>' + value.popu15 + ' 変化率:' + value.change
         );
     });
     console.log(rankingStrings);
